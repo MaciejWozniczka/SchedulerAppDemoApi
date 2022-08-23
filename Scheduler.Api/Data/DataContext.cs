@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Scheduler.Api.Authentication;
 using Scheduler.Api.Companies;
+using Scheduler.Api.CompaniesOpeningHours;
 using Scheduler.Api.Employees;
 using Scheduler.Api.EmployeesPositions;
 using Scheduler.Api.Licences;
@@ -19,6 +20,7 @@ namespace Scheduler.Api.Data
         public DbSet<UserLicence>? UserLicences { get; set; }
         public DbSet<Company>? Companies { get; set; }
         public DbSet<UserCompany>? UserCompanies { get; set; }
+        public DbSet<CompanyOpeningHours>? CompaniesOpeningHours { get; set; }
         public DbSet<Employee>? Employees { get; set; }
         public DbSet<Position>? Positions { get; set; }
         public DbSet<EmployeesPosition>? EmployeesPositions { get; set; }
