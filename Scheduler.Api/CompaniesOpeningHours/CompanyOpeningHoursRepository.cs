@@ -13,7 +13,7 @@ namespace Scheduler.Api.CompaniesOpeningHours
     {
         Task<CompanyOpeningHours> Create(CompanyOpeningHours model, CancellationToken cancellationToken);
         Task<CompanyOpeningHours> Update(CompanyOpeningHours model, CancellationToken cancellationToken);
-        Task<bool> Delete(CompanyOpeningHours model, CancellationToken cancellationToken);
+        Task<bool> Delete(Guid id, CancellationToken cancellationToken);
         Task<CompanyOpeningHours> GetById(Guid id, CancellationToken cancellationToken);
     }
 }

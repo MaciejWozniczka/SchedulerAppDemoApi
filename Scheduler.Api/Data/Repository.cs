@@ -28,8 +28,10 @@ namespace Scheduler.Api.Data
             return model;
         }
 
-        public async Task<bool> Delete(T model, CancellationToken cancellationToken)
+        public async Task<bool> Delete(Guid id, CancellationToken cancellationToken)
         {
+            var model = await GetById(id, cancellationToken);
+
             model.IsActive = false;
 
             var result = await db.SaveChangesAsync(cancellationToken);

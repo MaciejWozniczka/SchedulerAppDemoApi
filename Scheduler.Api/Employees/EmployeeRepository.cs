@@ -13,7 +13,7 @@ namespace Scheduler.Api.Employees
     {
         Task<Employee> Create(Employee model, CancellationToken cancellationToken);
         Task<Employee> Update(Employee model, CancellationToken cancellationToken);
-        Task<bool> Delete(Employee model, CancellationToken cancellationToken);
+        Task<bool> Delete(Guid id, CancellationToken cancellationToken);
         Task<Employee> GetById(Guid id, CancellationToken cancellationToken);
     }
 }

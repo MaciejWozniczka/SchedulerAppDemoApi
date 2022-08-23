@@ -13,7 +13,7 @@ namespace Scheduler.Api.UserLicences
     {
         Task<UserLicence> Create(UserLicence model, CancellationToken cancellationToken);
         Task<UserLicence> Update(UserLicence model, CancellationToken cancellationToken);
-        Task<bool> Delete(UserLicence model, CancellationToken cancellationToken);
+        Task<bool> Delete(Guid id, CancellationToken cancellationToken);
         Task<UserLicence> GetById(Guid id, CancellationToken cancellationToken);
     }
 }
