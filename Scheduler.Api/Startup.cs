@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-//using Scheduler.Api.Authentication;
+using Scheduler.Api.Authentication;
 using Scheduler.Api.Data;
 using System.Text;
 
@@ -22,11 +22,11 @@ namespace Scheduler.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddIdentity<User, IdentityRole>(cfg =>
-            //{
-            //    cfg.User.RequireUniqueEmail = true;
-            //})
-            //.AddEntityFrameworkStores<DataContext>();
+            services.AddIdentity<User, IdentityRole>(cfg =>
+            {
+                cfg.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<DataContext>();
 
             services.AddAuthentication(options =>
             {
