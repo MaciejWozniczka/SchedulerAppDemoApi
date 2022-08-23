@@ -15,7 +15,7 @@ namespace Scheduler.Api.Positions
             _mediator = mediator;
         }
 
-        [HttpDelete("/api/InputData/{id}")]
+        [HttpDelete("/api/DeletePosition/{id}")]
         public async Task<IActionResult> Delete(Guid id) => await _mediator.Send(new DeletePositionCommand(id)).Process();
 
         public class DeletePositionCommand : IRequest<Result>

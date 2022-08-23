@@ -16,7 +16,7 @@ namespace Scheduler.Api.UserLicences
             this.mediator = mediator;
         }
 
-        [HttpPost("/api/Tenant")]
+        [HttpPost("/api/ManageUserLicence")]
         public async Task<IActionResult> Post(UserLicence command)
         {
             return await mediator.Send(command).Process();

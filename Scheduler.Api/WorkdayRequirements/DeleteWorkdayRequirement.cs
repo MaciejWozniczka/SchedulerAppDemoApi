@@ -15,7 +15,7 @@ namespace Scheduler.Api.WorkdayRequirements
             _mediator = mediator;
         }
 
-        [HttpDelete("/api/InputData/{id}")]
+        [HttpDelete("/api/DeleteWorkdayRequirement/{id}")]
         public async Task<IActionResult> Delete(Guid id) => await _mediator.Send(new DeleteWorkdayRequirementCommand(id)).Process();
 
         public class DeleteWorkdayRequirementCommand : IRequest<Result>

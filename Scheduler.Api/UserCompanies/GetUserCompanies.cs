@@ -17,7 +17,7 @@ namespace Scheduler.Api.UserCompanies
             _mediator = mediator;
         }
 
-        [HttpGet("/api/Tenant/{id}")]
+        [HttpGet("/api/GetUserCompanies/{id}")]
         public async Task<IActionResult> Get(Guid id) => await _mediator.Send(new GetUserCompaniesQuery(id)).Process();
 
         public class GetUserCompaniesQuery : IRequest<Result<UserCompany>>

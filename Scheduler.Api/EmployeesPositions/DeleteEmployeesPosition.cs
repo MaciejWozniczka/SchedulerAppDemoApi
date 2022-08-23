@@ -15,7 +15,7 @@ namespace Scheduler.Api.EmployeesPositions
             _mediator = mediator;
         }
 
-        [HttpDelete("/api/InputData/{id}")]
+        [HttpDelete("/api/DeleteEmployeesPosition/{id}")]
         public async Task<IActionResult> Delete(Guid id) => await _mediator.Send(new DeleteEmployeesPositionCommand(id)).Process();
 
         public class DeleteEmployeesPositionCommand : IRequest<Result>

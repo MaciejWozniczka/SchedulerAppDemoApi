@@ -19,7 +19,7 @@ namespace Scheduler.Api.CompaniesOpeningHours
             _mediator = mediator;
         }
 
-        [HttpGet("/api/Tenant/{id}")]
+        [HttpGet("/api/GetCompanyOpeningHours/{id}")]
         public async Task<IActionResult> Get(Guid id) => await _mediator.Send(new GetCompanyOpeningHoursQuery(id)).Process();
 
         public class GetCompanyOpeningHoursQuery : IRequest<Result<List<CompanyOpeningHours>>>

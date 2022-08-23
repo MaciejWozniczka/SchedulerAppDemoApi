@@ -16,7 +16,7 @@ namespace Scheduler.Api.Companies
             this.mediator = mediator;
         }
 
-        [HttpPost("/api/Tenant")]
+        [HttpPost("/api/ManageCompany")]
         public async Task<IActionResult> Post(Company command)
         {
             return await mediator.Send(command).Process();

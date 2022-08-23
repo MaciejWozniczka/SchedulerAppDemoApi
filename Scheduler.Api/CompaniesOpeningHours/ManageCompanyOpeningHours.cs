@@ -17,7 +17,7 @@ namespace Scheduler.Api.CompaniesOpeningHours
             this.mediator = mediator;
         }
 
-        [HttpPost("/api/Tenant")]
+        [HttpPost("/api/ManageCompanyOpeningHours")]
         public async Task<IActionResult> Post(CompanyOpeningHours command)
         {
             return await mediator.Send(command).Process();

@@ -15,7 +15,7 @@ namespace Scheduler.Api.CompaniesOpeningHours
             _mediator = mediator;
         }
 
-        [HttpDelete("/api/InputData/{id}")]
+        [HttpDelete("/api/DeleteCompanyOpeningHours/{id}")]
         public async Task<IActionResult> Delete(Guid id) => await _mediator.Send(new DeleteCompanyOpeningHoursCommand(id)).Process();
 
         public class DeleteCompanyOpeningHoursCommand : IRequest<Result>

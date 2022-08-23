@@ -6,7 +6,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Scheduler.Api.Authentication;
+using Scheduler.Api.Companies;
+using Scheduler.Api.CompaniesOpeningHours;
 using Scheduler.Api.Data;
+using Scheduler.Api.Employees;
+using Scheduler.Api.EmployeesPositions;
+using Scheduler.Api.Licences;
+using Scheduler.Api.Positions;
+using Scheduler.Api.UserCompanies;
+using Scheduler.Api.UserLicences;
+using Scheduler.Api.WorkdayRequirements;
 using System.Text;
 
 namespace Scheduler.Api
@@ -56,7 +65,15 @@ namespace Scheduler.Api
             services.AddDbContext<DataContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddScoped<IBrokerService, BrokerService>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<ICompanyOpeningHoursRepository, CompanyOpeningHoursRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeesPositionRepository, EmployeesPositionRepository>();
+            services.AddScoped<ILicenceRepository, LicenceRepository>();
+            services.AddScoped<IPositionRepository, PositionRepository>();
+            services.AddScoped<IUserCompanyRepository, UserCompanyRepository>();
+            services.AddScoped<IUserLicenceRepository, UserLicenceRepository>();
+            services.AddScoped<IWorkdayRequirementRepository, WorkdayRequirementRepository>();
 
             services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 

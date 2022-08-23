@@ -15,7 +15,7 @@ namespace Scheduler.Api.UserLicences
             _mediator = mediator;
         }
 
-        [HttpDelete("/api/InputData/{id}")]
+        [HttpDelete("/api/DeleteUserLicence/{id}")]
         public async Task<IActionResult> Delete(Guid id) => await _mediator.Send(new DeleteUserLicenceCommand(id)).Process();
 
         public class DeleteUserLicenceCommand : IRequest<Result>

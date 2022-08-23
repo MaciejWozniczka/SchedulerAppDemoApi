@@ -1,3 +1,5 @@
+using Scheduler.Api.Data;
+
 namespace Scheduler.Api
 {
     public class Program
@@ -6,10 +8,20 @@ namespace Scheduler.Api
         {
             var host = CreateHostBuilder(args).Build();
 
-            if (args.Length > 0 && args[0].ToLower() == "/seed")
+            using (var scope = host.Services.CreateScope())
             {
-                return;
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var context = services.GetRequiredService<DataContext>();
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while seeding the database.");
+                }
             }
+
             host.Run();
         }
 

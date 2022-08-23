@@ -17,7 +17,7 @@ namespace Scheduler.Api.WorkdayRequirements
             _mediator = mediator;
         }
 
-        [HttpGet("/api/Tenant/{id}")]
+        [HttpGet("/api/GetWorkdayRequirement/{id}")]
         public async Task<IActionResult> Get(Guid id) => await _mediator.Send(new GetWorkdayRequirementQuery(id)).Process();
 
         public class GetWorkdayRequirementQuery : IRequest<Result<WorkdayRequirement>>

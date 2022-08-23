@@ -6,21 +6,21 @@ using Scheduler.Api.Extensions;
 namespace Scheduler.Api.Employees
 {
     [ApiController]
-    public class DeleteEmployees : Controller
+    public class DeleteEmployee : Controller
     {
         private readonly IMediator _mediator;
 
-        public DeleteEmployees(IMediator mediator)
+        public DeleteEmployee(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpDelete("/api/InputData/{id}")]
-        public async Task<IActionResult> Delete(Guid id) => await _mediator.Send(new DeleteEmployeesCommand(id)).Process();
+        [HttpDelete("/api/DeleteEmployee/{id}")]
+        public async Task<IActionResult> Delete(Guid id) => await _mediator.Send(new DeleteEmployeeCommand(id)).Process();
 
-        public class DeleteEmployeesCommand : IRequest<Result>
+        public class DeleteEmployeeCommand : IRequest<Result>
         {
-            public DeleteEmployeesCommand(Guid id)
+            public DeleteEmployeeCommand(Guid id)
             {
                 Id = id;
             }
@@ -28,16 +28,16 @@ namespace Scheduler.Api.Employees
             public Guid Id { get; set; }
         }
 
-        public class DeleteEmployeesCommandHandler : IRequestHandler<DeleteEmployeesCommand, Result>
+        public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeCommand, Result>
         {
             private readonly IEmployeeRepository _repository;
 
-            public DeleteEmployeesCommandHandler(IEmployeeRepository repository)
+            public DeleteEmployeeCommandHandler(IEmployeeRepository repository)
             {
                 _repository = repository;
             }
 
-            public async Task<Result> Handle(DeleteEmployeesCommand request, CancellationToken cancellationToken)
+            public async Task<Result> Handle(DeleteEmployeeCommand request, CancellationToken cancellationToken)
             {
                 var result = await _repository.Delete(request.Id, cancellationToken);
 

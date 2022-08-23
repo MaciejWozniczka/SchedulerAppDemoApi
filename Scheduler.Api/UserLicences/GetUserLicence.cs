@@ -17,7 +17,7 @@ namespace Scheduler.Api.UserLicences
             _mediator = mediator;
         }
 
-        [HttpGet("/api/Tenant/{id}")]
+        [HttpGet("/api/GetUserLicence/{id}")]
         public async Task<IActionResult> Get(Guid id) => await _mediator.Send(new GetUserLicenceQuery(id)).Process();
 
         public class GetUserLicenceQuery : IRequest<Result<UserLicence>>

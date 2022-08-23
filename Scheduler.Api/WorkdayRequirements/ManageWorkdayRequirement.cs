@@ -16,7 +16,7 @@ namespace Scheduler.Api.WorkdayRequirements
             this.mediator = mediator;
         }
 
-        [HttpPost("/api/Tenant")]
+        [HttpPost("/api/ManageWorkdayRequirement")]
         public async Task<IActionResult> Post(WorkdayRequirement command)
         {
             return await mediator.Send(command).Process();

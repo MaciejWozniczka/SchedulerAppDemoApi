@@ -17,7 +17,7 @@ namespace Scheduler.Api.Positions
             _mediator = mediator;
         }
 
-        [HttpGet("/api/Tenant/{id}")]
+        [HttpGet("/api/GetAllPositions")]
         public async Task<IActionResult> Get() => await _mediator.Send(new GetAllPositionsQuery()).Process();
 
         public class GetAllPositionsQuery : IRequest<Result<List<Position>>>
