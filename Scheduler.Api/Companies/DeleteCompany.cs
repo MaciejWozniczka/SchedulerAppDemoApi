@@ -6,21 +6,21 @@ using Scheduler.Api.Extensions;
 namespace Scheduler.Api.Companies
 {
     [ApiController]
-    public class DeleteInputData : Controller
+    public class DeleteCompany : Controller
     {
         private readonly IMediator _mediator;
 
-        public DeleteInputData(IMediator mediator)
+        public DeleteCompany(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         [HttpDelete("/api/InputData/{id}")]
-        public async Task<IActionResult> Delete(Guid id) => await _mediator.Send(new DeleteInputDataCommand(id)).Process();
+        public async Task<IActionResult> Delete(Guid id) => await _mediator.Send(new DeleteCompanyCommand(id)).Process();
 
-        public class DeleteInputDataCommand : IRequest<Result>
+        public class DeleteCompanyCommand : IRequest<Result>
         {
-            public DeleteInputDataCommand(Guid id)
+            public DeleteCompanyCommand(Guid id)
             {
                 Id = id;
             }
@@ -28,16 +28,16 @@ namespace Scheduler.Api.Companies
             public Guid Id { get; set; }
         }
 
-        public class DeleteInputDataCommandHandler : IRequestHandler<DeleteInputDataCommand, Result>
+        public class DeleteCompanyCommandHandler : IRequestHandler<DeleteCompanyCommand, Result>
         {
             private readonly ICompanyRepository _repository;
 
-            public DeleteInputDataCommandHandler(ICompanyRepository repository)
+            public DeleteCompanyCommandHandler(ICompanyRepository repository)
             {
                 _repository = repository;
             }
 
-            public async Task<Result> Handle(DeleteInputDataCommand request, CancellationToken cancellationToken)
+            public async Task<Result> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
             {
                 var result = await _repository.Delete(request.Id, cancellationToken);
 
