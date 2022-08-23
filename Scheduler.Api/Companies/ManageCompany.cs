@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Scheduler.Api.Data;
 using Scheduler.Api.Extensions;
-using System.Text.Json.Serialization;
 
 namespace Scheduler.Api.Companies
 {
@@ -19,27 +18,12 @@ namespace Scheduler.Api.Companies
         }
 
         [HttpPost("/api/Tenant")]
-        public async Task<IActionResult> Post(ManageCompanyCommand command)
+        public async Task<IActionResult> Post(Company command)
         {
             return await mediator.Send(command).Process();
         }
 
-        public class ManageCompanyCommand : IRequest<Result<Guid>>
-        {
-            [JsonIgnore]
-            public Guid Id { get; set; }
-            public bool IsActive { get; set; }
-            public string? Name { get; set; }
-        }
-
-        public class MappingProfile : Profile
-        {
-            public MappingProfile()
-            {
-                CreateMap<ManageCompanyCommand, Company>();
-            }
-        }
-        public class ManageCompanyQueryHandler : IRequestHandler<ManageCompanyCommand, Result<Guid>>
+        public class ManageCompanyQueryHandler : IRequestHandler<Company, Result<Guid>>
         {
             private readonly IMapper mapper;
             private readonly ICompanyRepository repository;
@@ -50,7 +34,7 @@ namespace Scheduler.Api.Companies
                 this.repository = repository;
             }
 
-            public async Task<Result<Guid>> Handle(ManageCompanyCommand request, CancellationToken cancellationToken)
+            public async Task<Result<Guid>> Handle(Company request, CancellationToken cancellationToken)
             {
                 Company tenant;
                 bool isAdding = request.Id == Guid.Empty;

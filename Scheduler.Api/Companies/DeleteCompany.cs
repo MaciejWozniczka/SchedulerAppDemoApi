@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Scheduler.Api.Data;
 using Scheduler.Api.Extensions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Scheduler.Api.Companies
 {

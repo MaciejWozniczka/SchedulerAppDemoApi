@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Scheduler.Api.Data;
@@ -22,7 +20,7 @@ namespace Scheduler.Api.Companies
         [HttpGet("/api/Tenant/{id}")]
         public async Task<IActionResult> Get(Guid id) => await _mediator.Send(new GetCompanyQuery(id)).Process();
 
-        public class GetCompanyQuery : IRequest<Result<CompanyDto>>
+        public class GetCompanyQuery : IRequest<Result<Company>>
         {
             public GetCompanyQuery(Guid id)
             {
@@ -31,38 +29,24 @@ namespace Scheduler.Api.Companies
 
             public Guid Id { get; set; }
         }
-        public class CompanyDto
-        {
-            public Guid Id { get; set; }
-            public bool IsActive { get; set; }
-            public string? Name { get; set; }
-        }
 
-        public class MappingProfile : Profile
-        {
-            public MappingProfile() => CreateMap<Company, CompanyDto>();
-        }
-
-        public class GetCompanyQueryHandler : IRequestHandler<GetCompanyQuery, Result<CompanyDto>>
+        public class GetCompanyQueryHandler : IRequestHandler<GetCompanyQuery, Result<Company>>
         {
             private readonly DataContext _db;
-            private readonly IMapper _mapper;
 
-            public GetCompanyQueryHandler(DataContext db, IMapper mapper)
+            public GetCompanyQueryHandler(DataContext db)
             {
                 _db = db;
-                _mapper = mapper;
             }
 
-            public async Task<Result<CompanyDto>> Handle(GetCompanyQuery request, CancellationToken cancellationToken)
+            public async Task<Result<Company>> Handle(GetCompanyQuery request, CancellationToken cancellationToken)
             {
                 var result = await _db.Companies
-                    .ProjectTo<CompanyDto>(_mapper.ConfigurationProvider)
                     .FirstOrDefaultAsync(p => p.Id == request.Id, cancellationToken);
 
                 if (result == null)
                 {
-                    return Result.NotFound<CompanyDto>(request.Id);
+                    return Result.NotFound<Company>(request.Id);
                 }
 
                 return Result.Ok(result);
