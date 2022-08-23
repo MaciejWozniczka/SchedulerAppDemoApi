@@ -66,8 +66,10 @@ namespace Scheduler.Api
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(UserManager<User> userManager, IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Seeder.Seed(userManager).Wait();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
