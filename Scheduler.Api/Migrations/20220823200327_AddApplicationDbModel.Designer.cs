@@ -12,8 +12,8 @@ using Scheduler.Api.Data;
 namespace Scheduler.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220823183514_NullableColumns")]
-    partial class NullableColumns
+    [Migration("20220823200327_AddApplicationDbModel")]
+    partial class AddApplicationDbModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -190,21 +190,41 @@ namespace Scheduler.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("Scheduler.Api.CompaniesOpeningHours.CompanyOpeningHours", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("ClosingTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("DayOfTheWeek")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("OpeningTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("CompaniesOpeningHours");
                 });
 
             modelBuilder.Entity("Scheduler.Api.Employees.Employee", b =>
@@ -218,6 +238,9 @@ namespace Scheduler.Api.Migrations
 
                     b.Property<int>("DailyWorkingHours")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<int>("MaxDailyWorkingHours")
                         .HasColumnType("int");
@@ -245,6 +268,9 @@ namespace Scheduler.Api.Migrations
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("PositionId")
                         .HasColumnType("uniqueidentifier");
 
@@ -259,6 +285,9 @@ namespace Scheduler.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -272,6 +301,9 @@ namespace Scheduler.Api.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -290,6 +322,9 @@ namespace Scheduler.Api.Migrations
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -303,6 +338,9 @@ namespace Scheduler.Api.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("LicenceId")
                         .HasColumnType("uniqueidentifier");
@@ -335,6 +373,9 @@ namespace Scheduler.Api.Migrations
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("PositionId")
                         .HasColumnType("uniqueidentifier");

@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Scheduler.Api.Migrations
 {
-    public partial class ApplicationDatabaseModel : Migration
+    public partial class AddApplicationDbModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,10 +14,8 @@ namespace Scheduler.Api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DayOfTheWeek = table.Column<int>(type: "int", nullable: false),
-                    OpeningTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClosingTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,16 +23,33 @@ namespace Scheduler.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CompaniesOpeningHours",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DayOfTheWeek = table.Column<int>(type: "int", nullable: false),
+                    OpeningTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ClosingTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompaniesOpeningHours", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Employees",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MonthlyWorkingHours = table.Column<int>(type: "int", nullable: false),
                     DailyWorkingHours = table.Column<int>(type: "int", nullable: false),
                     MaxDailyWorkingHours = table.Column<int>(type: "int", nullable: false),
-                    PreferredTimeOfDay = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PreferredTimeOfDay = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,7 +62,8 @@ namespace Scheduler.Api.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PositionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    PositionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,7 +75,8 @@ namespace Scheduler.Api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,7 +88,8 @@ namespace Scheduler.Api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,7 +102,8 @@ namespace Scheduler.Api.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -98,7 +118,8 @@ namespace Scheduler.Api.Migrations
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LicenceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ValidFrom = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ValidTo = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ValidTo = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -115,7 +136,8 @@ namespace Scheduler.Api.Migrations
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     DayOfTheWeek = table.Column<int>(type: "int", nullable: false),
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -127,6 +149,9 @@ namespace Scheduler.Api.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Companies");
+
+            migrationBuilder.DropTable(
+                name: "CompaniesOpeningHours");
 
             migrationBuilder.DropTable(
                 name: "Employees");
@@ -141,10 +166,31 @@ namespace Scheduler.Api.Migrations
                 name: "Positions");
 
             migrationBuilder.DropTable(
+                name: "RoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "UserClaims");
+
+            migrationBuilder.DropTable(
                 name: "UserCompanies");
 
             migrationBuilder.DropTable(
                 name: "UserLicences");
+
+            migrationBuilder.DropTable(
+                name: "UserLogins");
+
+            migrationBuilder.DropTable(
+                name: "UserRoles");
+
+            migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "UserTokens");
 
             migrationBuilder.DropTable(
                 name: "WorkdayRequirements");

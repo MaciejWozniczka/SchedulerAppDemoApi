@@ -38,7 +38,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -60,7 +60,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoleClaims", (string)null);
+                    b.ToTable("RoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -82,7 +82,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserClaims", (string)null);
+                    b.ToTable("UserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -99,7 +99,7 @@ namespace Scheduler.Api.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("UserLogins", (string)null);
+                    b.ToTable("UserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -110,7 +110,7 @@ namespace Scheduler.Api.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("UserRoles", (string)null);
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -127,7 +127,7 @@ namespace Scheduler.Api.Migrations
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("UserTokens", (string)null);
+                    b.ToTable("UserTokens");
                 });
 
             modelBuilder.Entity("Scheduler.Api.Authentication.User", b =>
@@ -179,7 +179,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Scheduler.Api.Companies.Company", b =>
@@ -188,12 +188,15 @@ namespace Scheduler.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies", (string)null);
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("Scheduler.Api.CompaniesOpeningHours.CompanyOpeningHours", b =>
@@ -211,12 +214,15 @@ namespace Scheduler.Api.Migrations
                     b.Property<int>("DayOfTheWeek")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("OpeningTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesOpeningHours", (string)null);
+                    b.ToTable("CompaniesOpeningHours");
                 });
 
             modelBuilder.Entity("Scheduler.Api.Employees.Employee", b =>
@@ -230,6 +236,9 @@ namespace Scheduler.Api.Migrations
 
                     b.Property<int>("DailyWorkingHours")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<int>("MaxDailyWorkingHours")
                         .HasColumnType("int");
@@ -245,7 +254,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees", (string)null);
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("Scheduler.Api.EmployeesPositions.EmployeesPosition", b =>
@@ -257,12 +266,15 @@ namespace Scheduler.Api.Migrations
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("PositionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmployeesPositions", (string)null);
+                    b.ToTable("EmployeesPositions");
                 });
 
             modelBuilder.Entity("Scheduler.Api.Licences.Licence", b =>
@@ -271,12 +283,15 @@ namespace Scheduler.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Licences", (string)null);
+                    b.ToTable("Licences");
                 });
 
             modelBuilder.Entity("Scheduler.Api.Positions.Position", b =>
@@ -285,12 +300,15 @@ namespace Scheduler.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Positions", (string)null);
+                    b.ToTable("Positions");
                 });
 
             modelBuilder.Entity("Scheduler.Api.UserCompanies.UserCompany", b =>
@@ -302,12 +320,15 @@ namespace Scheduler.Api.Migrations
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserCompanies", (string)null);
+                    b.ToTable("UserCompanies");
                 });
 
             modelBuilder.Entity("Scheduler.Api.UserLicences.UserLicence", b =>
@@ -315,6 +336,9 @@ namespace Scheduler.Api.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("LicenceId")
                         .HasColumnType("uniqueidentifier");
@@ -330,7 +354,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserLicences", (string)null);
+                    b.ToTable("UserLicences");
                 });
 
             modelBuilder.Entity("Scheduler.Api.WorkdayRequirements.WorkdayRequirement", b =>
@@ -348,6 +372,9 @@ namespace Scheduler.Api.Migrations
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("PositionId")
                         .HasColumnType("uniqueidentifier");
 
@@ -359,7 +386,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkdayRequirements", (string)null);
+                    b.ToTable("WorkdayRequirements");
                 });
 #pragma warning restore 612, 618
         }

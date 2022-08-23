@@ -6,5 +6,6 @@ namespace Scheduler.Api.Data
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+        public bool IsActive { get; set; }
     }
 }
