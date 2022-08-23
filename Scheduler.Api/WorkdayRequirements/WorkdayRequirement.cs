@@ -1,8 +1,9 @@
-﻿using Scheduler.Api.Data;
+﻿using MediatR;
+using Scheduler.Api.Data;
 
 namespace Scheduler.Api.WorkdayRequirements
 {
-    public class WorkdayRequirement : BaseModel
+    public class WorkdayRequirement : BaseModel, IRequest<Result<Guid>>
     {
         public Guid CompanyId { get; set; }
         public Guid PositionId { get; set; }
