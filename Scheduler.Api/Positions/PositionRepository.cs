@@ -13,7 +13,7 @@ namespace Scheduler.Api.Positions
     {
         Task<Position> Create(Position model, CancellationToken cancellationToken);
         Task<Position> Update(Position model, CancellationToken cancellationToken);
-        Task<bool> Delete(Guid id, CancellationToken cancellationToken);
+        Task<bool> Delete(Position model, CancellationToken cancellationToken);
         Task<Position> GetById(Guid id, CancellationToken cancellationToken);
     }
 }

@@ -11,9 +11,6 @@ namespace Scheduler.Api.Licences
 
     public interface ILicenceRepository
     {
-        Task<Licence> Create(Licence model, CancellationToken cancellationToken);
-        Task<Licence> Update(Licence model, CancellationToken cancellationToken);
-        Task<bool> Delete(Guid id, CancellationToken cancellationToken);
         Task<Licence> GetById(Guid id, CancellationToken cancellationToken);
     }
 }

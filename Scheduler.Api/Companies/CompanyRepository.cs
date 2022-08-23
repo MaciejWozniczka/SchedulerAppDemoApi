@@ -13,7 +13,7 @@ namespace Scheduler.Api.Companies
     {
         Task<Company> Create(Company model, CancellationToken cancellationToken);
         Task<Company> Update(Company model, CancellationToken cancellationToken);
-        Task<bool> Delete(Guid id, CancellationToken cancellationToken);
+        Task<bool> Delete(Company model, CancellationToken cancellationToken);
         Task<Company> GetById(Guid id, CancellationToken cancellationToken);
     }
 }
