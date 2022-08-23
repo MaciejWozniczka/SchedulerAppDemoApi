@@ -1,8 +1,9 @@
-﻿using Scheduler.Api.Data;
+﻿using MediatR;
+using Scheduler.Api.Data;
 
 namespace Scheduler.Api.Licences
 {
-    public class Licence : BaseModel
+    public class Licence : BaseModel, IRequest<Result<Guid>>
     {
         public string? Name { get; set; }
     }
