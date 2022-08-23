@@ -1,4 +1,4 @@
-﻿using Scheduler.Api.Helpers;
+﻿using Scheduler.Api.Data;
 
 namespace Scheduler.Api.CompaniesOpeningHours
 {

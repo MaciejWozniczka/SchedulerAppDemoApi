@@ -38,7 +38,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -60,7 +60,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoleClaims");
+                    b.ToTable("RoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -82,7 +82,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserClaims");
+                    b.ToTable("UserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -99,7 +99,7 @@ namespace Scheduler.Api.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("UserLogins");
+                    b.ToTable("UserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -110,7 +110,7 @@ namespace Scheduler.Api.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -127,7 +127,7 @@ namespace Scheduler.Api.Migrations
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("UserTokens");
+                    b.ToTable("UserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Scheduler.Api.Authentication.User", b =>
@@ -179,7 +179,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Scheduler.Api.Companies.Company", b =>
@@ -193,7 +193,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("Scheduler.Api.CompaniesOpeningHours.CompanyOpeningHours", b =>
@@ -216,7 +216,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesOpeningHours");
+                    b.ToTable("CompaniesOpeningHours", (string)null);
                 });
 
             modelBuilder.Entity("Scheduler.Api.Employees.Employee", b =>
@@ -245,7 +245,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("Scheduler.Api.EmployeesPositions.EmployeesPosition", b =>
@@ -262,7 +262,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmployeesPositions");
+                    b.ToTable("EmployeesPositions", (string)null);
                 });
 
             modelBuilder.Entity("Scheduler.Api.Licences.Licence", b =>
@@ -276,7 +276,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Licences");
+                    b.ToTable("Licences", (string)null);
                 });
 
             modelBuilder.Entity("Scheduler.Api.Positions.Position", b =>
@@ -290,7 +290,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Positions");
+                    b.ToTable("Positions", (string)null);
                 });
 
             modelBuilder.Entity("Scheduler.Api.UserCompanies.UserCompany", b =>
@@ -307,7 +307,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserCompanies");
+                    b.ToTable("UserCompanies", (string)null);
                 });
 
             modelBuilder.Entity("Scheduler.Api.UserLicences.UserLicence", b =>
@@ -330,7 +330,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserLicences");
+                    b.ToTable("UserLicences", (string)null);
                 });
 
             modelBuilder.Entity("Scheduler.Api.WorkdayRequirements.WorkdayRequirement", b =>
@@ -359,7 +359,7 @@ namespace Scheduler.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkdayRequirements");
+                    b.ToTable("WorkdayRequirements", (string)null);
                 });
 #pragma warning restore 612, 618
         }
