@@ -1,8 +1,9 @@
-﻿using Scheduler.Api.Data;
+﻿using MediatR;
+using Scheduler.Api.Data;
 
 namespace Scheduler.Api.CompaniesOpeningHours
 {
-    public class CompanyOpeningHours : BaseModel
+    public class CompanyOpeningHours : BaseModel, IRequest<Result<Guid>>
     {
         public Guid CompanyId { get; set; }
         public int DayOfTheWeek { get; set; }

@@ -15,9 +15,14 @@ namespace Scheduler.Api.CompaniesOpeningHours
 
         public async Task<List<CompanyOpeningHours>> GetAllByCompanyId(Guid companyId, CancellationToken cancellationToken)
         {
-            return await dbSet
+            var result = await dbSet
                 .Where(c => c.CompanyId == companyId)
                 .ToListAsync(cancellationToken);
+
+            if (result == null)
+                return new();
+            else
+                return result;
         }
     }
 
@@ -26,7 +31,6 @@ namespace Scheduler.Api.CompaniesOpeningHours
         Task<CompanyOpeningHours> Create(CompanyOpeningHours model, CancellationToken cancellationToken);
         Task<CompanyOpeningHours> Update(CompanyOpeningHours model, CancellationToken cancellationToken);
         Task<bool> Delete(Guid id, CancellationToken cancellationToken);
-        Task<CompanyOpeningHours> GetById(Guid id, CancellationToken cancellationToken);
         Task<List<CompanyOpeningHours>> GetAllByCompanyId(Guid id, CancellationToken cancellationToken);
     }
 }
