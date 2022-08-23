@@ -68,6 +68,24 @@ namespace Scheduler.Api.Data
             return result;
         }
 
+        public static Result<T> NotFound<T>()
+        {
+            var result = new Result<T>
+            {
+                Code = ResultCode.NotFound,
+                Errors = new List<ErrorMessage>()
+                {
+                    new ErrorMessage()
+                    {
+                        Message = $"Nie znaleziono żadnych elementów"
+                    }
+                }
+            };
+
+
+            return result;
+        }
+
         public static Result<T> NotFound<T>(Guid id)
         {
             var result = new Result<T>
